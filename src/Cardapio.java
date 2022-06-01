@@ -23,7 +23,7 @@ public class Cardapio {
 
 	public Item retornarItemPorCodigo(String codigo) {
 		for (Item item : itens) {
-			if (item.getCodigo() == codigo)
+			if (item.getCodigo().equals(codigo))
 				return item;
 		}
 		return null;
