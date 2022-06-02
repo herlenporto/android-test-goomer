@@ -11,6 +11,7 @@ public class App {
 		String adicionarMaisItem = "1";
 		List<Item> pedidos = new ArrayList<Item>();
 		Cardapio cardapio = criarItensECardapio();
+		String confirmarPedido = "";
 
 		while (adicionarMaisItem.equals("1")) {
 			mostrarItens(cardapio);
@@ -34,7 +35,14 @@ public class App {
 			System.out.println(item.toString() + ", Quantidade: " + item.getQuantidade());
 		}
 
-		System.out.println("Confirme o valor total do pedido: R$ " + calcularTotalPedido(pedidos));
+		System.out.println(
+				"Confirma o pedido no valor total de: R$ " + calcularTotalPedido(pedidos) + " (1- SIM, 2- NÃO)");
+		confirmarPedido = sc.next();
+
+		if (confirmarPedido.equals("1")) {
+			System.out.println("Pedido enviado para a cozinha com sucesso!");
+		} else
+			System.out.println("Pedido cancelado.");
 
 	}
 
