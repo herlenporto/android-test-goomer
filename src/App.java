@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
@@ -16,17 +17,21 @@ public class App {
 		while (adicionarMaisItem.equals("1")) {
 			mostrarItens(cardapio);
 
-			System.out.println("Selecione o código do Item.");
+			System.out.println("Selecione o codigo do Item.");
 			String codigo = sc.next();
 			Item item = cardapio.retornarItemPorCodigo(codigo);
 
-			System.out.println("Informe a quantidade de Itens:");
-			int quantidade = sc.nextInt();
-			item.setQuantidade(quantidade);
+			if (Objects.nonNull(item)) {
+				System.out.println("Informe a quantidade de Itens:");
+				int quantidade = sc.nextInt();
+				item.setQuantidade(quantidade);
 
-			pedidos.add(item);
+				pedidos.add(item);
+			} else {
+				System.out.println("Código de produto invalido");
+			}
 
-			System.out.println("Deseja mais algum Item? 1- SIM, 2- NÃO");
+			System.out.println("Deseja mais algum Item? 1 - SIM, Qualquer outro valor - NAO");
 			adicionarMaisItem = sc.next();
 
 		}
@@ -35,8 +40,8 @@ public class App {
 			System.out.println(item.toString() + ", Quantidade: " + item.getQuantidade());
 		}
 
-		System.out.println(
-				"Confirma o pedido no valor total de: R$ " + calcularTotalPedido(pedidos) + " (1- SIM, 2- NÃO)");
+		System.out.println("Confirma o pedido no valor total de: R$ " + calcularTotalPedido(pedidos)
+				+ " (1 - SIM, Qualquer outro valor - NAO)");
 		confirmarPedido = sc.next();
 
 		if (confirmarPedido.equals("1")) {
@@ -57,7 +62,7 @@ public class App {
 	}
 
 	private static void mostrarItens(Cardapio cardapio) {
-		System.out.println("Cardápio:");
+		System.out.println("Cardapio:");
 
 		for (Item item : cardapio.retonarItens()) {
 			System.out.println(item.toString());
